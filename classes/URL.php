@@ -3,18 +3,24 @@
 class URL extends Kohana_URL {
 
 	/**
-	 * Extension of URL::site that adds a third parameter for setting a language key.
-	 * The current language (Request::$lang) is used by default.
 	 *
-	 *     echo URL::site('foo/bar', FALSE, 'fr');  // custom language
-	 *     echo URL::site('foo/bar', FALSE, FALSE); // no language
+	 * Warning!!! I am still unsure that this function is a good idea
+	 * Warning!!! It might be removed
+	 *
+	 * Extension of URL::site that adds a parameter for setting a language key.
+	 * The current language (Lang::instance()->lang()) is used by default.
+	 *
+	 *     echo URL::site_lang('foo/bar'); // default language
+	 *     echo URL::site_lang('foo/bar', 'fr');  // custom language
+	 *     echo URL::site_lang('foo/bar', FALSE);  // NO language
 	 *
 	 * @param   string  site URI to convert
-	 * @param   mixed   protocol string or boolean, add protocol and domain?
 	 * @param   mixed   language key to prepend to the URI, or FALSE to not prepend a language
+	 * @param   mixed   protocol string or boolean, add protocol and domain?
+	 * @param   boolean Include the index_page in the URL
 	 * @return  string
 	 */
-	public static function site($uri = '', $protocol = NULL, $index = TRUE, $lang = TRUE)
+	public static function site_lang($uri = '', $lang = TRUE, $protocol = NULL, $index = TRUE)
 	{
 		if (empty($uri)) {
 			$uri = Request::initial()->uri();
