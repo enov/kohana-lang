@@ -18,20 +18,23 @@ class Kohana_T9n implements \Countable,
 		return $this->translations;
 	}
 
-	public function set_translations($translations)
+	public function set_translations(array $translations)
 	{
 		$translations = array_intersect_key($translations, $this->translations);
 		$this->translations = $translations + $this->translations;
 	}
 
-	public function __construct(array $translations)
+	public function __construct(array $translations = NULL)
 	{
 		// fill translation with keys of available languages
 		$this->translations = array_fill_keys(
 		  array_keys(Lang::instance()->list_languages())
 		  , NULL
 		);
-		$this->set_translations($translations);
+		if (!empty($translations))
+		{
+			$this->set_translations($translations);
+		}
 	}
 
 	public function &__get($lang)
