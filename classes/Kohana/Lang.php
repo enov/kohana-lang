@@ -259,7 +259,7 @@ class Kohana_Lang
 	 * @param mixed $lang language key to prepend to the URI, or FALSE to not to
 	 * @return type
 	 */
-	public function url_site($uri = FALSE, $lang = TRUE) {
+	public function url_site($uri = FALSE, $lang = TRUE, $protocol = NULL, $index = TRUE) {
 		// if $uri is not specified get it from Request
 		if (empty($uri)) {
 			$uri = Request::initial()->uri();
@@ -276,7 +276,7 @@ class Kohana_Lang
 			$uri = ltrim($uri, '/');
 		}
 
-		return URL::site($uri);
+		return URL::site($uri, $protocol, $index);
 	}
 
 	/**
