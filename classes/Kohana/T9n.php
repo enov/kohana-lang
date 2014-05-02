@@ -24,8 +24,9 @@ class Kohana_T9n implements \Countable,
 		$this->translations = $translations + $this->translations;
 	}
 
-	public function __construct(array $translations = NULL)
+	public function __construct($translations = NULL)
 	{
+		$translations = (array) $translations;
 		// fill translation with keys of available languages
 		$this->translations = array_fill_keys(
 		  array_keys(Lang::instance()->list_languages())
