@@ -24,8 +24,23 @@ class Kohana_T9n implements \Countable,
 		$this->translations = $translations + $this->translations;
 	}
 
+	/**
+	 * Translation constructor
+	 * Accepts
+	 *  - translation array
+	 *  - or object of type stdClass
+	 *  - a string
+	 *     -- that can be JSON decoded
+	 *     -- or that will be considered as the translation of the current request language.
+	 *
+	 * @param mixed $translations
+	 */
 	public function __construct($translations = NULL)
 	{
+		if (is_scalar($translations))
+		{
+			$translations = json_decode($translations)  ? : [Lang::instance()->lang() => $translations];
+		}
 		$translations = (array) $translations;
 		// fill translation with keys of available languages
 		$this->translations = array_fill_keys(
