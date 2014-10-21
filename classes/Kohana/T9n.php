@@ -73,10 +73,10 @@ class Kohana_T9n implements \Countable,
 		return array_key_exists($lang, $this->translations);
 	}
 
-	public function offsetGet($offset)
+	public function offsetGet($lang)
 	{
 		// test if language exists
-		if (!isset($this->$lang))
+		if (!$this->offsetExists($lang))
 			throw new Kohana_Exception('Language not available');
 		// return
 		return $this->translations[$lang];
