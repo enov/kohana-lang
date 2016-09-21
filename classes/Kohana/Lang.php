@@ -152,7 +152,7 @@ class Kohana_Lang
 		// param is NULL act as getter
 		if ($lang === NULL) {
 			// return default_lang() if lang is not set yet
-			return $this->_lang ? : $this->default_lang();
+			return $this->_lang ? : $this->default_language();
 		}
 
 		// act as setter from this point and onward
