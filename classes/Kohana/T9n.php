@@ -77,7 +77,7 @@ class Kohana_T9n implements \Countable,
 	{
 		// test if language exists
 		if (!$this->offsetExists($lang))
-			throw new Kohana_Exception('Language not available');
+			throw new Kohana_Exception('Language {lang} not available', array('{lang}', $lang));
 		// return
 		return $this->translations[$lang];
 	}
@@ -86,7 +86,7 @@ class Kohana_T9n implements \Countable,
 	{
 		// test if language exists
 		if (!$this->offsetExists($lang))
-			throw new Kohana_Exception('Language not available');
+			throw new Kohana_Exception('Language {lang} not available', array('{lang}' => $lang));
 		if (!is_string($translation))
 			throw new Kohana_Exception('A translation should be a string');
 		$this->translations[$lang] = $translation;
